@@ -49,7 +49,7 @@
             }
             return null;
         }
-        public Nodo? BuscarAnterior(string dato)
+        private Nodo? BuscarAnterior(string dato)
         {
             Nodo nodoActual = _nodoInicial;
             while (nodoActual.Siguiente != null)
@@ -61,6 +61,19 @@
                 nodoActual = nodoActual.Siguiente;
             }
             return null;
+        }
+
+        public void Eliminar(string dato)
+        {
+            Nodo? nodoEncontrado = Buscar(dato);
+
+            if (nodoEncontrado != null)
+            {
+                Nodo? nodoAnterior = BuscarAnterior(dato);
+                
+                nodoAnterior!.Siguiente = nodoEncontrado.Siguiente;
+                nodoEncontrado.Siguiente = null;
+            }
         }
 
     }
